@@ -1,4 +1,4 @@
-### Advent Of Code
+### Advent Of Code &#x1F384;
 
 Solutions for the advent of code challenge
 
