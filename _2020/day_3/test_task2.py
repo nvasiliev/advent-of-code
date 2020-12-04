@@ -1,10 +1,10 @@
 import pytest
 
 from _2020.testing import assert_single
-from .task1 import main
+from .task2 import main
 
 test_cases = [
-    ['1_in.txt', '1_1_out.txt']
+    ['1_in.txt', '1_2_out.txt']
 ]
 
 
