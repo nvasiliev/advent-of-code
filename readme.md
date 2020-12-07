@@ -1,7 +1,7 @@
 ### Advent Of Code &#x1F384;
 
 Solutions for the advent of code challenge  
-https://adventofcode.com/
+https://adventofcode.com
 
 
 #### 2020
