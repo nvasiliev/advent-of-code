@@ -10,11 +10,7 @@ def dfs(g: Dict[str, List[str]], target: str, u: str) -> bool:
     if u == target:
         return True
 
-    for v in g[u]:
-        if dfs(g, target, v):
-            return True
-
-    return False
+    return any(dfs(g, target, v) for v in g[u])
 
 
 def main(input_path = 0):
