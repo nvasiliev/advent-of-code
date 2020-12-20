@@ -2,6 +2,7 @@ from collections import Counter, deque
 from typing import Dict
 
 PREAMBLE_LEN = 25
+# PREAMBLE_LEN = 5
 
 
 def main(source = 0):
