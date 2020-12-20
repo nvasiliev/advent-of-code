@@ -1,5 +1,5 @@
-def main(input_path = 0):
-    with open(input_path) as f:
+def main(source = 0):
+    with open(source) as f:
         pass
 
 
