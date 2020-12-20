@@ -4,7 +4,8 @@ from _2020.testing import assert_single
 from .task1 import main
 
 test_cases = [
-    ['1_in.txt', '1_1_out.txt']
+    ['1.in', '1_1.out'],
+    ['2.in', '2_1.out']
 ]
 
 
