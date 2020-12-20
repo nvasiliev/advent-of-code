@@ -2,11 +2,10 @@ from collections import deque
 
 
 def solve(lines):
-    visited = set()
     acc, i, n = 0, 0, len(lines)
-
     swappable = ('jmp', 'nop')
     op_stack = deque()
+    visited = set()
     attempted = set()
     swap_index = -1
 
@@ -17,22 +16,16 @@ def solve(lines):
         if i in visited:
             prev_attempt_found = False if swap_index >= 0 else True
 
-            while op_stack:
+            while op not in swappable or i in attempted or not prev_attempt_found:
                 op, acc, i, num = op_stack.pop()
+                visited.remove(i)
 
                 if i == swap_index:
                     prev_attempt_found = True
 
-                visited.remove(i)
-
-                if op in swappable and i not in attempted and prev_attempt_found:
-                    op = 'nop' if op == 'jmp' else 'jmp'
-                    attempted.add(i)
-                    swap_index = i
-                    break
-
-            if not prev_attempt_found:  # Prevent infinite loop
-                raise ValueError("Prev swap not found")
+            op = 'nop' if op == 'jmp' else 'jmp'
+            attempted.add(i)
+            swap_index = i
 
         visited.add(i)
         op_stack.append((op, acc, i, num))
