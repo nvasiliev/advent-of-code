@@ -1,24 +1,28 @@
 from typing import List
+from functools import wraps, partial
 
 
-class Cached(object):
-    def __init__(self, fn):
-        self.cache = {}
-        self.fn = fn
+def memo(fn = None, *, hash_function = lambda *args, **kwargs: f'{args}_{kwargs}'):
+    if not fn:
+        return partial(memo, hash_function = hash_function)
 
-    def __call__(self, *args, **kwargs):
-        key = kwargs['pos']
-        if key in self.cache:
-            return self.cache[key]
-        res = self.fn(*args, **kwargs)
-        self.cache[key] = res
+    cache = {}
+
+    @wraps(fn)
+    def wrapper(*args, **kwargs):
+        key = hash_function(*args, **kwargs)
+        if key in cache:
+            return cache[key]
+        res = fn(*args, **kwargs)
+        cache[key] = res
         return res
 
-    def clear(self):
-        self.cache.clear()
+    wrapper.clear = lambda: cache.clear()
+
+    return wrapper
 
 
-@Cached
+@memo(hash_function = lambda *args, **kwargs: kwargs['pos'])
 def find_arrangements(prev, pos: int, joltes: List[int]):
     n = len(joltes)
 
